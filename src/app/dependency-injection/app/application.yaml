@@ -2,3 +2,7 @@ services:
   App.controllers.StatusGetController:
     class: ../../controllers/StatusGetController
     arguments: []
+
+  App.controllers.WelcomePostController:
+    class: ../../controllers/WelcomePostController
+    arguments: []
