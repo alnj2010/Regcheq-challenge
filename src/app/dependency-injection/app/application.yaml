@@ -6,3 +6,7 @@ services:
   App.controllers.WelcomePostController:
     class: ../../controllers/WelcomePostController
     arguments: ['@Context.Users.application.UserGreeter']
+
+  App.controllers.UserGetController:
+    class: ../../controllers/UserGetController
+    arguments: ['@Context.Users.application.UserGetter']

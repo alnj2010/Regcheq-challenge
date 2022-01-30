@@ -1,13 +1,26 @@
 import { Router, Request, Response } from 'express';
 import container from '../dependency-injection';
-import WelcomePostController from '../controllers/WelcomePostController';
-import { body } from 'express-validator';
+import { body, checkSchema } from 'express-validator';
 import { validateReqSchema } from '.';
 
 export const register = (router: Router) => {
-  const reqSchema = [body('name').exists().isString(), body('password').exists().isString()];
+  const welcomeSchema = [body('name').exists().isString(), body('password').exists().isString()];
 
-  const controller: WelcomePostController = container.get('App.controllers.WelcomePostController');
+  router.post('/user/welcome', welcomeSchema, validateReqSchema, (req: Request, res: Response) =>
+    container.get('App.controllers.WelcomePostController').run(req, res)
+  );
 
-  router.post('/user/welcome', reqSchema, validateReqSchema, (req: Request, res: Response) => controller.run(req, res));
+  const getUserSchema = checkSchema({
+    id: {
+      in: ['params', 'query'],
+      errorMessage: 'ID is wrong',
+      isInt: true,
+      // Sanitizers can go here as well
+      toInt: true
+    }
+  });
+
+  router.get('/user/:id', getUserSchema, validateReqSchema, (req: Request, res: Response) =>
+    container.get('App.controllers.UserGetController').run(req, res)
+  );
 };
