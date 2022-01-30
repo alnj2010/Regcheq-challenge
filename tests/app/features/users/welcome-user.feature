@@ -29,3 +29,13 @@ Feature: Welcome User
     """
     Then the response status code should be 401
     And the response should have a non-empty
+
+  Scenario: A invalid admin user
+    Given I send a POST request to "/user/welcome" with body:
+    """
+    {
+      "name": 2,
+      "password": "123456"
+    }
+    """
+    Then the response status code should be 422

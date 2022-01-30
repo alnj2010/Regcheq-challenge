@@ -1,11 +1,13 @@
 import { Router, Request, Response } from 'express';
 import container from '../dependency-injection';
 import WelcomePostController from '../controllers/WelcomePostController';
-//import { UserGreeter } from '../../Contexts/Users/application/UserGreeter';
+import { body } from 'express-validator';
+import { validateReqSchema } from '.';
 
 export const register = (router: Router) => {
+  const reqSchema = [body('name').exists().isString(), body('password').exists().isString()];
+
   const controller: WelcomePostController = container.get('App.controllers.WelcomePostController');
-  //const greater: UserGreeter = new UserGreeter();
-  //const controller: WelcomePostController = new WelcomePostController(greater);
-  router.post('/user/welcome', (req: Request, res: Response) => controller.run(req, res));
+
+  router.post('/user/welcome', reqSchema, validateReqSchema, (req: Request, res: Response) => controller.run(req, res));
 };
