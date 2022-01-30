@@ -8,13 +8,24 @@ Feature: Welcome User
     """
     {
       "name": "admin",
-      "key": "admin"
+      "password": "admin"
     }
     """
     Then the response status code should be 200
     And the response should be:
     """
     {
-      "message": "welcome to Regcheq Admin"
+      "message": "Welcome to Regcheq Admin"
     }
     """
+
+  Scenario: A invalid admin user
+    Given I send a POST request to "/user/welcome" with body:
+    """
+    {
+      "name": "abraham",
+      "password": "123456"
+    }
+    """
+    Then the response status code should be 401
+    And the response should have a non-empty

@@ -1,0 +1,4 @@
+services:
+  Context.Users.application.UserGreeter:
+    class: ../../../Contexts/Users/application/UserGreeter
+    arguments: []

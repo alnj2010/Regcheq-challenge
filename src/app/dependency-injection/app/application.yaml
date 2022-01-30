@@ -5,4 +5,4 @@ services:
 
   App.controllers.WelcomePostController:
     class: ../../controllers/WelcomePostController
-    arguments: []
+    arguments: ['@Context.Users.application.UserGreeter']
