@@ -48,7 +48,7 @@ $ make database-provision -C ./regcheq-db/
 
 The latter will fill the databse with documents to test.
 
-Open http://localhost:8000 to view it in your browser.
+Open http://localhost:8000/api-docs/ to view the apidocs in your browser.
 
 ## Deploy local (developer mode)
 
@@ -89,7 +89,7 @@ $ npm install
 #### `npm dev:regcheq:backend`
 
 Runs the app in the development mode.\
-Open [http://localhost:8000](http://localhost:8000)
+Open [http://localhost:8000/api-docs/](http://localhost:8000/api-docs/)
 
 #### `npm run test`
 
