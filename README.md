@@ -88,7 +88,7 @@ $ npm install
 
 ### In the project directory, you can run:
 
-#### `npm dev:regcheq:backend`
+#### `npm run dev:regcheq:backend`
 
 Runs the app in the development mode.\
 Open [http://localhost:8000/api-docs/](http://localhost:8000/api-docs/)
