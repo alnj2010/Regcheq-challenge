@@ -52,7 +52,7 @@
           ],
           "responses": {
             "200": {
-              "description": "Ok",
+              "description": "OK",
               "schema": {
                 "type": "object",
                 "$ref": "#/definitions/IWelcome"

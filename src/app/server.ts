@@ -27,7 +27,7 @@ export class Server {
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
-    this.express.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+    this.express.use('/', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
     const router = Router();
     router.use(errorHandler());
     this.express.use(router);
