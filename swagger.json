@@ -1,0 +1,137 @@
+{
+  "swaggerDefinition": {
+    "definitions": {
+      "IWelcome": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "IUser": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "lastname"
+        ],
+        "type": "object"
+      },
+      "IError": {
+        "properties": {
+          "errorMsg": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "errorMsg"
+        ],
+        "type": "object"
+      }
+    },
+    "info": {
+      "title": "Regcheq API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/user/welcome": {
+        "post": {
+          "operationId": "Welcome",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Ok",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/IWelcome"
+
+              }
+            },
+            "401": {
+              "description": "UNAUTHORIZED",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/IError"
+
+              }
+            }
+          },
+          "security": [],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "title": "CreateBody",
+                "type": "object",
+                "required": [
+                  "name",
+                  "password"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "/user/{id}": {
+        "get": {
+          "operationId": "Get User",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/IUser"
+
+              }
+            },
+            "404": {
+              "description": "NOT FOUND",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/IError"
+
+              }
+            }
+          },
+          "security": [],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    "produces": [
+      "application/json"
+    ]
+  },
+  "apis": ["server.ts"]
+}

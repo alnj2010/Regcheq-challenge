@@ -7,7 +7,11 @@ import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
 import { registerRoutes } from './routes';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUI from 'swagger-ui-express';
+import swaggerDocument from '../../swagger.json';
 
+const swaggerDocs = swaggerJsDoc(swaggerDocument);
 export class Server {
   private express: express.Express;
   private port: string;
@@ -23,6 +27,7 @@ export class Server {
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
+    this.express.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
     const router = Router();
     router.use(errorHandler());
     this.express.use(router);
