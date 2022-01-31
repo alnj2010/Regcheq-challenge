@@ -17,9 +17,13 @@ export default class UserGetController implements Controller {
 
     try {
       const user = await this.userGetter.run({ id });
-      res.status(httpStatus.OK).send(user);
+      if (user) {
+        res.status(httpStatus.OK).send(user);
+      } else {
+        res.status(httpStatus.NOT_FOUND).send({ errorMsg: 'user not found' });
+      }
     } catch (error) {
-      res.status(httpStatus.NOT_FOUND).send(error);
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error);
     }
   }
 }

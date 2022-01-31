@@ -5,7 +5,7 @@ import { UserRepository } from '../domain/UserRepository';
 export class UserGetter {
   constructor(private userRepository: UserRepository) {}
 
-  async run(request: GetUserRequest): Promise<User> {
+  async run(request: GetUserRequest): Promise<User | null> {
     return this.userRepository.getById(request.id);
   }
 }

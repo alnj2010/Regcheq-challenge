@@ -9,7 +9,6 @@ Feature: Retrive User
     And the response should be:
       """
       {
-        "id": 1,
         "name": "Abraham",
         "lastname": "Navarro"
       }

@@ -18,7 +18,7 @@ echo "[$(date)] Connected! 🤙"
 for AFILE in ${FILES[@]}
 do
     echo -e "[$(date)] Processing \t$AFILE"
-    mongoimport --host ${HOST} --authenticationDatabase admin --db users --collection users --mode upsert --file ${AFILE}
+    mongoimport --host ${HOST} --authenticationDatabase admin --db regcheq --collection users --mode upsert --file ${AFILE}
     echo -e "[$(date)] Done \t\t$AFILE"
 done
 

@@ -4,11 +4,12 @@ import { loadDBConnection } from './db';
 
 export class RegcheqBackendApp {
   server?: Server;
+  dbModule?: { start(): Promise<void>; close(): Promise<void> };
 
   async start() {
     const appConfig = loadConfig();
-    const dbModule = loadDBConnection({ dbUri: appConfig.DB_URI });
-    await dbModule.start();
+    this.dbModule = loadDBConnection({ dbUri: appConfig.DB_URI });
+    await this.dbModule.start();
 
     const port = process.env.PORT || '5000';
     this.server = new Server(port);
@@ -20,6 +21,7 @@ export class RegcheqBackendApp {
   }
 
   async stop() {
+    await this.dbModule?.close();
     return this.server?.stop();
   }
 }
