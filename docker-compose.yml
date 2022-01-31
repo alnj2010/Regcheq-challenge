@@ -9,5 +9,13 @@ services:
       - ./regcheq-db/database:/database
     networks:
       - 'net-regcheq'
+  api:
+    build: '.'
+    image: regcheq-api-image
+    container_name: regcheq-api-container
+    ports:
+      - '8000:8000'
+    networks:
+      - 'net-regcheq'
 networks:
   net-regcheq:

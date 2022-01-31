@@ -1,6 +1,13 @@
 FROM node:12.16.3-slim
 
-WORKDIR /code
+# Create app directory
+WORKDIR /usr/src/app
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
+
 RUN npm install
+
+COPY . .
+
+EXPOSE 8000
+CMD [ "npm", "run", "dev:regcheq:backend" ]
