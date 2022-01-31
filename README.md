@@ -9,6 +9,7 @@
 - Git
 - Docker 20.10.8 (It will install all these tools for you)
 - docker-compose 1.29
+- GNU Make 4.2.1
 
 ### Installation
 
@@ -58,6 +59,7 @@ Open http://localhost:8000/api-docs/ to view the apidocs in your browser.
 
 - Node v12.22.9 (npm v6.14.15)
 - Docker 20.10.8 (It will install all these tools for you)
+- GNU Make 4.2.1
 
 ### Installation
 
